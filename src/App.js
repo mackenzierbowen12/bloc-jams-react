@@ -4,14 +4,14 @@ import './App.css';
 import Landing from './components/Landing';
 import Library from './components/Library';
 
-class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
         <header>
           <nav>
             <Link to='/'>Landing</Link>
-            <Link to='/'>Library</Link>
+            <Link to='/library'>Library</Link>
           </nav>
           <h1>Bloc Jams</h1>
         </header>
