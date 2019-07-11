@@ -14,8 +14,11 @@ class Album extends Component {
             album: album
         };
 
-        const songList = albumData.map(songs => {
-            return <tr>{songs}</tr>;
+        const songList = album.songs.map((song, index) => {
+            console.log(song.title);
+            console.log(index + 1 );
+            return <tr>placeholder</tr>
+            
         });
             
              
@@ -40,9 +43,10 @@ class Album extends Component {
                         <col id="song-duration-column" />
                     </colgroup>
                     <tbody>
-                        <tr id="song-number">{this.state.album.songs.number}</tr>
-                        <tr id="song-title">{this.state.album.songs.title}</tr>
-                        <tr id="song-duration">{this.state.album.songs.duration}</tr> 
+                        {this.state.album.songs.map((song, index) =>
+                            <tr>{song.title}</tr>   
+                        )};
+                    
                     </tbody>
                 </table>
             </section>
