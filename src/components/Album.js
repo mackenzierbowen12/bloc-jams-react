@@ -14,12 +14,12 @@ class Album extends Component {
             album: album
         };
 
-        const songInfo = albumData.map(() => 
-            <tr>{ }</tr>        
-        );
-
-    
-    }
+        const songList = albumData.map(songs => {
+            return <tr>{songs}</tr>;
+        });
+            
+             
+    };
 
     
     render() {
@@ -27,7 +27,7 @@ class Album extends Component {
             <section className="album">
                 <section id="album-info">
                     <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
-                    <div className="album-details">
+                    <div className="albusm-details">
                         <h1 id="album-title">{this.state.album.title}</h1>
                         <h2 className="artist">{this.state.album.artist}</h2>
                         <div id="release-info">{this.state.album.releaseInfo}</div>
@@ -35,14 +35,14 @@ class Album extends Component {
                 </section>
                 <table id="song-list">
                     <colgroup>
-                        <col id="song-number-coloumn"/>
+                        <col id="song-number-column"/>
                         <col id="song-title-column"/>
                         <col id="song-duration-column" />
                     </colgroup>
                     <tbody>
-                        {/* <tr id="song-title">{this.state.songs.title}</tr>
-                        <tr id="song-duration">{this.state.songs.duration}</tr>
-                         */}
+                        <tr id="song-number">{this.state.album.songs.number}</tr>
+                        <tr id="song-title">{this.state.album.songs.title}</tr>
+                        <tr id="song-duration">{this.state.album.songs.duration}</tr> 
                     </tbody>
                 </table>
             </section>
