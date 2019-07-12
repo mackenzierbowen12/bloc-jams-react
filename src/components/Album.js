@@ -9,7 +9,7 @@ class Album extends Component {
         const album = albumData.find( album => {
             return album.slug === this.props.match.params.slug
         });
-
+        
         this.state = {
             album: album,
             currentSong: album.songs[0],
@@ -19,7 +19,6 @@ class Album extends Component {
         this.audioElement = document.createElement('audio');
         this.audioElement.src = album.songs[0].audioSrc;
     };
-
 
     play() {
         this.audioElement.play();
