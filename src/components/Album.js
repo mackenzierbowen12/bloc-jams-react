@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import { setFlagsFromString } from 'v8';
 
 
 class Album extends Component {
@@ -11,8 +12,38 @@ class Album extends Component {
         });
     
         this.state = {
-            album: album
+            album: album,
+            currentSong: album.songs[0],
+            isPlaying: false
         };
+
+        this.audioElement = document.createElement('audio');
+        this.audioElement.src = album.songs[0].audioSrc;
+
+        play() {
+            this.audioElement.play();
+            this.setState({ isPlaying: true });
+        }
+
+        pause() {
+            this.audioElement.pause();
+            this.setState({ isPlaying: false });
+        }
+        
+        setSong(song) {
+            this.audioElement.src = song.audioSrc;
+            this.setState({ currentSong: song });
+        }
+
+        handleSongClick(song) {
+            const isSameSong = this.state.currentSong === song;
+            if (this.state.isPlaying && isSameSong) {
+                this.pause();
+            } else {
+                if (!isSameSong) { this.setSong(song); }
+                this.play();
+            }
+        }
 
         const songList = album.songs.map((song, index) => {
             return <tr>{song}</tr>
@@ -41,8 +72,8 @@ class Album extends Component {
                     </colgroup>
                     <tbody>
                         
-                        {this.state.album.songs.map((song, index) =>
-                            <tr key={index}>
+                        {this.state.album.songs.map( (song, index) =>
+                            <tr className="song" key={index} onClick={() => this.handleSongClick(song)}>
                                 <td key={song.id}>{index + 1}</td>
                                 <td key={song.name}>{song.title}</td>
                                 <td key={song.length}>{song.duration}</td>
