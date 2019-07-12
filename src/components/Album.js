@@ -15,10 +15,7 @@ class Album extends Component {
         };
 
         const songList = album.songs.map((song, index) => {
-            console.log(song.title);
-            console.log(index + 1 );
-            return <tr>placeholder</tr>
-            
+            return <tr>{song}</tr>
         });
             
              
@@ -45,11 +42,10 @@ class Album extends Component {
                     <tbody>
                         
                         {this.state.album.songs.map((song, index) =>
-                            <React.Fragment>
-                            <tr key={song.id}>{index + 1}</tr>    
-                            <tr key={song.name}>{song.title}</tr>
-                            <tr key={song.length}>{song.duration}</tr>
-                            </React.Fragment>
+                            <tr key={index}>{index + 1}
+                                <td key={song.name}>{song.title}</td>
+                                <td key={song.length}>{song.duration}</td>
+                            </tr>
                         )}
                         
                     </tbody>
