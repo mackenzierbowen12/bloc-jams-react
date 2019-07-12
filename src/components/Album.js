@@ -42,8 +42,24 @@ class Album extends Component {
         } else {
             if (!isSameSong) { this.setSong(song); }
             this.play();
-        }
+        } 
     };
+
+    onMouseEnter() {
+        //hovering over song displays play button instead of song #
+        this.setState({ mouseOn: true });
+    }
+
+    onMouseLeave() {
+        //if mouse removed from song #, play button goes away, song # returns
+        this.setState({ mouseOn: false });
+    }
+
+    songPlaying() {
+        //while song is playing display pause button instead of #
+    }
+
+
     
     render() {
         return (
@@ -71,7 +87,7 @@ class Album extends Component {
                                 <td key={song.length}>{song.duration}</td>
                             </tr>
                         )}
-                        
+                    
                     </tbody>
                 </table>
             </section>
