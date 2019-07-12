@@ -43,11 +43,12 @@ class Album extends Component {
                         <col id="song-duration-column" />
                     </colgroup>
                     <tbody>
+                        
                         {this.state.album.songs.map((song, index) =>
                             <React.Fragment>
-                            <tr>{song.index + 1}</tr>    
-                            <tr>{song.title}</tr>
-                            <tr>{song.duration}</tr>
+                            <tr key={song.id}>{index + 1}</tr>    
+                            <tr key={song.name}>{song.title}</tr>
+                            <tr key={song.length}>{song.duration}</tr>
                             </React.Fragment>
                         )}
                         
