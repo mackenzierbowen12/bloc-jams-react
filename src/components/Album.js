@@ -46,17 +46,21 @@ class Album extends Component {
     };
 
     onMouseEnter() {
-        //hovering over song displays play button instead of song #
+       // if mouse hover on song #, display play button
         this.setState({ mouseOn: true });
     }
 
     onMouseLeave() {
-        //if mouse removed from song #, play button goes away, song # returns
+        //if mouse removed from play button, song # returns
         this.setState({ mouseOn: false });
     }
 
     songPlaying() {
-        //while song is playing display pause button instead of #
+        // if song if playing, display pause button
+        if (this.state.isPlaying) {
+            // display pause button
+        
+        }
     }
 
 
@@ -81,12 +85,16 @@ class Album extends Component {
                     <tbody>
                         
                         {this.state.album.songs.map( (song, index) =>
-                            <tr className="song" key={index} onClick={() => this.handleSongClick(song)}>
-                                <td key={song.id}>{index + 1}</td>
+                            <tr className="song" key={index}>
+                                <td key={song.id}><span>
+                                    <button className="ion-play" key={index} onClick={() => this.handleSongClick(song)}></button>
+                                    </span>{index + 1}</td>
                                 <td key={song.name}>{song.title}</td>
                                 <td key={song.length}>{song.duration}</td>
                             </tr>
                         )}
+
+
                     
                     </tbody>
                 </table>
