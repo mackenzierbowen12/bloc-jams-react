@@ -13,7 +13,8 @@ class Album extends Component {
         this.state = {
             album: album,
             currentSong: album.songs[0],
-            isPlaying: false
+            isPlaying: false,
+            hoveredIndex: null
         };
 
         this.audioElement = document.createElement('audio');
@@ -47,23 +48,13 @@ class Album extends Component {
 
     onMouseEnter() {
        // if mouse hover on song #, display play button
-        this.setState({ mouseOn: true });
+        this.setState({ hoveredIndex: true });
     }
 
     onMouseLeave() {
         //if mouse removed from play button, song # returns
-        this.setState({ mouseOn: false });
+        this.setState({ hoveredIndex: null });
     }
-
-    songPlaying() {
-        // if song if playing, display pause button
-        if (this.state.isPlaying) {
-            // display pause button
-        
-        }
-    }
-
-
     
     render() {
         return (
@@ -86,15 +77,22 @@ class Album extends Component {
                         
                         {this.state.album.songs.map( (song, index) =>
                             <tr className="song" key={index}>
-                                <td key={song.id}><span>
-                                    <button className="ion-play" key={index} onClick={() => this.handleSongClick(song)}></button>
-                                    </span>{index + 1}</td>
+                                <td key={song.id}>
+                                <span>
+                                    <button className="ion-play" 
+                                        key={index} 
+                                        onClick={() => this.handleSongClick(song)}
+                                        onMouseEnter={() => this.onMouseEnter(index)}
+                                        onMouseLeave={() => this.onMouseLeave(index)}>
+                                    </button>
+                                    <button className="ion-pause"
+                                        onClick={() => this.pause(song)}>
+                                    </button>
+                                </span>{index + 1}</td>
                                 <td key={song.name}>{song.title}</td>
                                 <td key={song.length}>{song.duration}</td>
                             </tr>
                         )}
-
-
                     
                     </tbody>
                 </table>
