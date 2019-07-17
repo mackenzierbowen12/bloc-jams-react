@@ -46,9 +46,9 @@ class Album extends Component {
         } 
     };
 
-    onMouseEnter() {
+    onMouseEnter(index) {
        // if mouse hover on song #, display play button
-        this.setState({ hoveredIndex: true });
+        this.setState({ hoveredIndex: index });
     }
 
     onMouseLeave() {
@@ -57,6 +57,16 @@ class Album extends Component {
     }
     
     render() {
+        const isPlaying = this.state.isPlaying;
+        let button;
+        if(isPlaying) {
+            button = <button className="ion-play" onClick=
+            {this.play} />;
+        } else {
+            button = <button className="ion-pause" onClick=
+            {this.pause} />;
+        }
+
         return (
             <section className="album">
                 <section id="album-info">
