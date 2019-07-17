@@ -14,29 +14,29 @@ class Album extends Component {
             album: album,
             currentSong: album.songs[0],
             isPlaying: false,
-            hoveredIndex: null
+            
         };
 
         this.audioElement = document.createElement('audio');
         this.audioElement.src = album.songs[0].audioSrc;
     };
 
-    play() {
+    play = () => {
         this.audioElement.play();
         this.setState({ isPlaying: true });
     }
 
-    pause() {
+    pause = () => {
         this.audioElement.pause();
         this.setState({ isPlaying: false });
     }
         
-    setSong(song) {
+    setSong = (song) => {
         this.audioElement.src = song.audioSrc;
         this.setState({ currentSong: song });
     }
 
-    handleSongClick(song) {
+    handleSongClick = (song) => {
         const isSameSong = this.state.currentSong === song;
         if (this.state.isPlaying && isSameSong) {
             this.pause();
@@ -46,27 +46,18 @@ class Album extends Component {
         } 
     };
 
-    onMouseEnter(index) {
+    onMouseEnter = () => {
        // if mouse hover on song #, display play button
-        this.setState({ hoveredIndex: index });
+        this.setState({ });
     }
 
-    onMouseLeave() {
+    onMouseLeave = () => {
         //if mouse removed from play button, song # returns
-        this.setState({ hoveredIndex: null });
+        this.setState({ });
     }
     
     render() {
-        const isPlaying = this.state.isPlaying;
-        let button;
-        if(isPlaying) {
-            button = <button className="ion-play" onClick=
-            {this.play} />;
-        } else {
-            button = <button className="ion-pause" onClick=
-            {this.pause} />;
-        }
-
+        
         return (
             <section className="album">
                 <section id="album-info">
@@ -91,9 +82,7 @@ class Album extends Component {
                                 <span>
                                     <button className="ion-play" 
                                         key={index} 
-                                        onClick={() => this.handleSongClick(song)}
-                                        onMouseEnter={() => this.onMouseEnter(index)}
-                                        onMouseLeave={() => this.onMouseLeave(index)}>
+                                        onClick={() => this.handleSongClick(song)}>
                                     </button>
                                     <button className="ion-pause"
                                         onClick={() => this.pause(song)}>
