@@ -14,7 +14,7 @@ class Album extends Component {
             album: album,
             currentSong: album.songs[0],
             isPlaying: false,
-            
+            isHovering: false
         };
 
         this.audioElement = document.createElement('audio');
@@ -46,16 +46,7 @@ class Album extends Component {
         } 
     };
 
-    onMouseEnter = () => {
-       // if mouse hover on song #, display play button
-        this.setState({ });
-    }
 
-    onMouseLeave = () => {
-        //if mouse removed from play button, song # returns
-        this.setState({ });
-    }
-    
     render() {
         
         return (
@@ -80,11 +71,16 @@ class Album extends Component {
 
                             <tr className="song" key={index}>
                             
-                            <td>    
-                            <button onClick={() => this.handleSongClick(song)}>
-                                <span className="ion-play"></span>
-                                <span className="ion-pause"></span>
-                            </button>
+                            <td>
+                                <div>
+
+                                    {this.state.isPlaying ? null : <button className="ion-play"
+                                        onClick={() => {
+                                            this.handleSongClick(song)
+                                        }}></button> 
+                                    }
+                                    
+                                </div>
                             </td>
 
                                 <td key={song.id}></td>
