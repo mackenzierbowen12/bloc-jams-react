@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
 
-
 class Album extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +13,7 @@ class Album extends Component {
             album: album,
             currentSong: album.songs[0],
             isPlaying: false,
-            isHovering: false
+            hovered: ''
         };
 
         this.audioElement = document.createElement('audio');
@@ -46,6 +45,29 @@ class Album extends Component {
         } 
     };
 
+    renderPlayButton(index, song) {
+        if (this.state.isPlaying && this.state.currentSong === song) {
+            return <span className="ion-pause"></span>;
+        }
+
+        if (this.state.hovered === index) {
+            return <span className="ion-play"></span>;
+        }
+
+        return index + 1;
+    }
+
+    handleOnMouseOver(index) {
+        this.setState({
+            hovered: index,
+        })
+    }
+
+    handleMouseLeave() {
+        this.setState({
+            hovered: ''
+        })
+    }
 
     render() {
         
@@ -66,29 +88,24 @@ class Album extends Component {
                         <col id="song-duration-column" />
                     </colgroup>
                     <tbody>
-                        
-                        {this.state.album.songs.map( (song, index) =>
-
-                            <tr className="song" key={index}>
-                            
-                            <td>
-                                <div>
-
-                                    {this.state.isPlaying ? null : <button className="ion-play"
-                                        onClick={() => {
-                                            this.handleSongClick(song)
-                                        }}></button> 
-                                    }
-                                    
-                                </div>
-                            </td>
-
-                                <td key={song.id}></td>
-                                <td key={song.name}>{song.title}</td>
-                                <td key={song.length}>{song.duration}</td>
-
-                            </tr>
-                        )}
+                        {
+                            this.state.album.songs.map( (song, index) => {
+                                return (
+                                    <tr className="song" key={index}>
+                                        <td
+                                            onMouseOver={() => this.handleOnMouseOver(index)}
+                                            onMouseLeave={() => this.handleMouseLeave()}
+                                            onClick={() => this.handleSongClick(song)}
+                                        >
+                                            {this.renderPlayButton(index, song)}
+                                        </td>
+                                        <td key={song.id}></td>
+                                        <td key={song.name}>{song.title}</td>
+                                        <td key={song.length}>{song.duration}</td>
+                                    </tr>
+                                )
+                            })
+                        }
                     
                     </tbody>
                 </table>
