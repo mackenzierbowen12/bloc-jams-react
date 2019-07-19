@@ -14,7 +14,6 @@ class Album extends Component {
             album: album,
             currentSong: album.songs[0],
             isPlaying: false,
-            isPaused: true,
             hovered: ''
         };
 
@@ -47,20 +46,18 @@ class Album extends Component {
         } 
     };
 
-    renderPlayButton(index, song) {
+    renderIconButton(index, song) {
         if (this.state.isPlaying && this.state.currentSong === song) {
             return <span className="ion-pause"></span>;
         } 
         if (this.state.hovered === index) {
             return <span className="ion-play"></span>;
         }
-        return index + 1;
-    }
-    
-    renderPauseButton(song) {
-        if (this.state.isPaused && this.state.currentSong === song) {   
+
+        if () {
             return <span className="ion-play"></span>;
         }
+        return index + 1;
     }
 
     handleOnMouseOver(index) {
@@ -104,7 +101,7 @@ class Album extends Component {
                                             onClick={() => this.handleSongClick(song)}
                                             
                                         >
-                                            {this.renderPlayButton(index, song)}
+                                            {this.renderIconButton(index, song)}
                                             
                                         </td>
                                         <td key={song.id}></td>
