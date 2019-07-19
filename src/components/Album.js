@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import PlayerBar from'./PlayerBar';
 
 class Album extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ class Album extends Component {
             album: album,
             currentSong: album.songs[0],
             isPlaying: false,
+            isPaused: true,
             hovered: ''
         };
 
@@ -20,17 +22,17 @@ class Album extends Component {
         this.audioElement.src = album.songs[0].audioSrc;
     };
 
-    play = () => {
+    play() {
         this.audioElement.play();
         this.setState({ isPlaying: true });
     }
 
-    pause = () => {
+    pause() {
         this.audioElement.pause();
-        this.setState({ isPlaying: false });
+        this.setState({ isPaused: true });
     }
         
-    setSong = (song) => {
+    setSong(song) {
         this.audioElement.src = song.audioSrc;
         this.setState({ currentSong: song });
     }
@@ -48,13 +50,17 @@ class Album extends Component {
     renderPlayButton(index, song) {
         if (this.state.isPlaying && this.state.currentSong === song) {
             return <span className="ion-pause"></span>;
-        }
-
+        } 
         if (this.state.hovered === index) {
             return <span className="ion-play"></span>;
         }
-
         return index + 1;
+    }
+    
+    renderPauseButton(song) {
+        if (this.state.isPaused && this.state.currentSong === song) {   
+            return <span className="ion-play"></span>;
+        }
     }
 
     handleOnMouseOver(index) {
@@ -96,8 +102,10 @@ class Album extends Component {
                                             onMouseOver={() => this.handleOnMouseOver(index)}
                                             onMouseLeave={() => this.handleMouseLeave()}
                                             onClick={() => this.handleSongClick(song)}
+                                            
                                         >
                                             {this.renderPlayButton(index, song)}
+                                            
                                         </td>
                                         <td key={song.id}></td>
                                         <td key={song.name}>{song.title}</td>
@@ -109,6 +117,11 @@ class Album extends Component {
                     
                     </tbody>
                 </table>
+                <PlayerBar 
+                    isPlaying={this.state.isPlaying} 
+                    currentSong={this.state.currentSong}
+                    handleSongClick={() => this.handleSongClick(this.state.currentSong)} 
+                />
             </section>
         );
     }
