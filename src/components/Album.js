@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import albumData from './../data/albums';
 import PlayerBar from'./PlayerBar';
 
+
 class Album extends Component {
     constructor(props) {
         super(props);
@@ -51,15 +52,15 @@ class Album extends Component {
             return <span className="ion-pause"></span>;
         } 
 
+        if (!this.state.isPlaying && this.state.currentSong === song) {
+            return <span className={this.props.isPlaying ? 'ion-pause' : 'ion-play'}></span>
+        }
+
         if (this.state.hovered === index) {
             return <span className="ion-play"></span>;
-        }
+        } 
 
-        if (!this.state.isPlaying && this.state.currentSong === index) {   
-            return <span className="ion-play"></span>;
-        }
-
-        return index + 1
+        return index + 1;
         
     }
 
@@ -71,13 +72,7 @@ class Album extends Component {
 
     handleMouseLeave() {
         this.setState({
-            hovered: ''
-        })
-    }
-
-    handlePause() {
-        this.setState({
-            isPlaying: false
+            hovered: '',
         })
     }
 
