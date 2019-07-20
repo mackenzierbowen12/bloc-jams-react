@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+import PlayerBar from './PlayerBar';
 
 class Album extends Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Album extends Component {
         
         this.state = {
             album: album,
-            currentSong: album.songs[0],
+            currentSong: album.songs,
             isPlaying: false,
             hovered: ''
         };
@@ -20,22 +21,22 @@ class Album extends Component {
         this.audioElement.src = album.songs[0].audioSrc;
     };
 
-    play = () => {
+    play () {
         this.audioElement.play();
         this.setState({ isPlaying: true });
     }
 
-    pause = () => {
+    pause () {
         this.audioElement.pause();
         this.setState({ isPlaying: false });
     }
         
-    setSong = (song) => {
+    setSong (song) {
         this.audioElement.src = song.audioSrc;
         this.setState({ currentSong: song });
     }
 
-    handleSongClick = (song) => {
+    handleSongClick (song) {
         const isSameSong = this.state.currentSong === song;
         if (this.state.isPlaying && isSameSong) {
             this.pause();
@@ -45,15 +46,26 @@ class Album extends Component {
         } 
     };
 
+    handlePrevClick() {
+        const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+        const newIndex = Math.max(0, currentIndex - 1);
+        const newSong = this.state.album.songs[newIndex];
+        this.setSong(newSong);
+        this.play();
+    }
+
     renderPlayButton(index, song) {
         if (this.state.isPlaying && this.state.currentSong === song) {
             return <span className="ion-pause"></span>;
         }
 
-        if (this.state.hovered === index) {
-            return <span className="ion-play"></span>;
+        if (!this.state.isPlaying && this.state.currentSong === song) {
+            return <span className={this.props.isPlaying ? 'ion-pause' : 'ion-play'}></span>
         }
 
+        if (this.state.hovered === index) {
+            return <span className="ion-play"></span>
+        }
         return index + 1;
     }
 
@@ -109,6 +121,12 @@ class Album extends Component {
                     
                     </tbody>
                 </table>
+                <PlayerBar 
+                    isPlaying={this.state.isPlaying}
+                    currentSong={this.state.currentSong}
+                    handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+                    handlePrevClick={() => this.handlePrevClick()}
+                />
             </section>
         );
     }
