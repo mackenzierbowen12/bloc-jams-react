@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
-<<<<<<< HEAD
-import PlayerBar from'./PlayerBar';
-
-=======
 import PlayerBar from './PlayerBar';
->>>>>>> playerbarbuttons-checkpoint
 
 class Album extends Component {
     constructor(props) {
@@ -26,29 +21,17 @@ class Album extends Component {
         this.audioElement.src = album.songs[0].audioSrc;
     };
 
-<<<<<<< HEAD
-    play() {
-=======
     play () {
->>>>>>> playerbarbuttons-checkpoint
         this.audioElement.play();
         this.setState({ isPlaying: true });
     }
 
-<<<<<<< HEAD
-    pause() {
-=======
     pause () {
->>>>>>> playerbarbuttons-checkpoint
         this.audioElement.pause();
         this.setState({ isPlaying: false });
     }
         
-<<<<<<< HEAD
-    setSong(song) {
-=======
     setSong (song) {
->>>>>>> playerbarbuttons-checkpoint
         this.audioElement.src = song.audioSrc;
         this.setState({ currentSong: song });
     }
@@ -71,32 +54,38 @@ class Album extends Component {
         this.play();
     }
 
+    handleNextClick() {
+        const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+        const newIndex = Math.max(0, currentIndex + 1);
+        const newSong = this.state.album.songs[newIndex];
+        this.setSong(newSong);
+        this.play();
+    }
+
     renderPlayButton(index, song) {
         if (this.state.isPlaying && this.state.currentSong === song) {
             return <span className="ion-pause"></span>;
-        } 
+        }
 
         if (!this.state.isPlaying && this.state.currentSong === song) {
             return <span className={this.props.isPlaying ? 'ion-pause' : 'ion-play'}></span>
         }
 
         if (this.state.hovered === index) {
-            return <span className="ion-play"></span>;
-        } 
-
+            return <span className="ion-play"></span>
+        }
         return index + 1;
-        
     }
 
-    handleOnMouseOver(song) {
+    handleOnMouseOver(index) {
         this.setState({
-            hovered: song,
+            hovered: index,
         })
     }
 
     handleMouseLeave() {
         this.setState({
-            hovered: '',
+            hovered: ''
         })
     }
 
@@ -129,7 +118,6 @@ class Album extends Component {
                                             onClick={() => this.handleSongClick(song)}
                                         >
                                             {this.renderPlayButton(index, song)}
-                                            
                                         </td>
                                         <td key={song.id}></td>
                                         <td key={song.name}>{song.title}</td>
@@ -142,16 +130,11 @@ class Album extends Component {
                     </tbody>
                 </table>
                 <PlayerBar 
-<<<<<<< HEAD
-                    isPlaying={this.state.isPlaying} 
-                    currentSong={this.state.currentSong}
-                    handleSongClick={() => this.handleSongClick(this.state.currentSong)} 
-=======
                     isPlaying={this.state.isPlaying}
                     currentSong={this.state.currentSong}
                     handleSongClick={() => this.handleSongClick(this.state.currentSong)}
->>>>>>> playerbarbuttons-checkpoint
                     handlePrevClick={() => this.handlePrevClick()}
+                    handleNextClick={() =>this.handleNextClick()}
                 />
             </section>
         );
