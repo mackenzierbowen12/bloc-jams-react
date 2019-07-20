@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import albumData from './../data/albums';
+<<<<<<< HEAD
 import PlayerBar from'./PlayerBar';
 
+=======
+import PlayerBar from './PlayerBar';
+>>>>>>> playerbarbuttons-checkpoint
 
 class Album extends Component {
     constructor(props) {
@@ -22,22 +26,34 @@ class Album extends Component {
         this.audioElement.src = album.songs[0].audioSrc;
     };
 
+<<<<<<< HEAD
     play() {
+=======
+    play () {
+>>>>>>> playerbarbuttons-checkpoint
         this.audioElement.play();
         this.setState({ isPlaying: true });
     }
 
+<<<<<<< HEAD
     pause() {
+=======
+    pause () {
+>>>>>>> playerbarbuttons-checkpoint
         this.audioElement.pause();
         this.setState({ isPlaying: false });
     }
         
+<<<<<<< HEAD
     setSong(song) {
+=======
+    setSong (song) {
+>>>>>>> playerbarbuttons-checkpoint
         this.audioElement.src = song.audioSrc;
         this.setState({ currentSong: song });
     }
 
-    handleSongClick = (song) => {
+    handleSongClick (song) {
         const isSameSong = this.state.currentSong === song;
         if (this.state.isPlaying && isSameSong) {
             this.pause();
@@ -126,9 +142,15 @@ class Album extends Component {
                     </tbody>
                 </table>
                 <PlayerBar 
+<<<<<<< HEAD
                     isPlaying={this.state.isPlaying} 
                     currentSong={this.state.currentSong}
                     handleSongClick={() => this.handleSongClick(this.state.currentSong)} 
+=======
+                    isPlaying={this.state.isPlaying}
+                    currentSong={this.state.currentSong}
+                    handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+>>>>>>> playerbarbuttons-checkpoint
                     handlePrevClick={() => this.handlePrevClick()}
                 />
             </section>
