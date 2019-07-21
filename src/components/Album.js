@@ -96,11 +96,11 @@ class Album extends Component {
         this.setState({ currentTime: newTime }); 
     }
 
-    handleVolumeChange() {
-        const updateVolume = this.audioElement.volume;
-        this.audioElement.volume = updateVolume;
-        this.setState({ volume: updateVolume });
-        console.log('heck yes');
+    handleVolumeChange(e) {
+        const changeVolume = this.audioElement.volume;
+        this.audioElement.volume = changeVolume;
+        this.setState({ volume: changeVolume });
+        console.log(e.target, e.target.value);
     }
 
     renderPlayButton(index, song) {
@@ -180,7 +180,7 @@ class Album extends Component {
                     handlePrevClick={() => this.handlePrevClick()}
                     handleNextClick={() => this.handleNextClick()}
                     handleTimeChange={(e) => this.handleTimeChange(e)}
-                    handleVolumeChange={() => this.handleVolumeChange()}
+                    handleVolumeChange={(e) => this.handleVolumeChange(e)}
 
                 />
             </section>
