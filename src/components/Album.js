@@ -97,8 +97,8 @@ class Album extends Component {
     }
 
     handleVolumeChange(e) {
+        this.audioElement.volume = e.target.value;
         this.setState({ volume: e.target.value });
-        console.log(e.target, e.target.value);
     }
 
     renderPlayButton(index, song) {
