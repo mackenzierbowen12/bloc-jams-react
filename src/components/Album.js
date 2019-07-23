@@ -128,13 +128,22 @@ class Album extends Component {
         })
     }
 
+    formatTime(duration, song) {
+        if(this.state.isPlaying && this.currentSong === song) {
+            return Math.floor( duration / 60 ) + ':' + Math.floor( duration % 60 );
+            } else {
+                return <span>"-:--"</span>
+            }
+        }
+    
+
     render() {
         
         return (
             <section className="album">
                 <section id="album-info">
                     <img id="album-cover-art" src={this.state.album.albumCover} alt={this.state.album.title}/>
-                    <div className="albusm-details">
+                    <div className="album-details">
                         <h1 id="album-title">{this.state.album.title}</h1>
                         <h2 className="artist">{this.state.album.artist}</h2>
                         <div id="release-info">{this.state.album.releaseInfo}</div>
