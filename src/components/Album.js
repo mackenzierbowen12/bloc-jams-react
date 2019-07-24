@@ -129,12 +129,14 @@ class Album extends Component {
     }
 
     formatTime(duration, song) {
-        if(this.state.isPlaying && this.currentSong === song) {
-            return Math.floor( duration / 60 ) + ':' + Math.floor( duration % 60 );
-            } else {
-                return <span>"-:--"</span>
-            }
+        const minutes = Math.floor(duration / 60);
+        const seconds = Math.floor(duration - minutes * 60);
+        if(this.state.isPlaying && this.state.currentSong === song) {
+            return (minutes < 10 ? '0' + minutes : minutes) + ":" + (seconds < 10 ? '0' + seconds : seconds);
+        } else {
+            return <span>"-:--"</span>
         }
+    }
     
 
     render() {
@@ -188,7 +190,7 @@ class Album extends Component {
                     handleNextClick={() => this.handleNextClick()}
                     handleTimeChange={(e) => this.handleTimeChange(e)}
                     handleVolumeChange={(e) => this.handleVolumeChange(e)}
-
+                    formatTime={(duration, song) => this.formatTime(duration, song)}
                 />
             </section>
         );
