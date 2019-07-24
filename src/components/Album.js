@@ -86,10 +86,12 @@ class Album extends Component {
         const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
         const newIndex = Math.max(0, currentIndex + 1);
         const newSong = this.state.album.songs[newIndex];
-        this.setSong(newSong);
-        this.play();
-    }
-
+        if (newIndex < this.state.album.songs.length){
+            this.setSong(newSong);
+            this.play();    
+        }
+    } 
+    
     handleTimeChange(e) {
         const newTime = this.audioElement.duration * e.target.value;
         this.audioElement.currentTime = newTime;
@@ -131,11 +133,7 @@ class Album extends Component {
     formatTime(duration, song) {
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration - minutes * 60);
-        if(this.state.isPlaying && this.state.currentSong === song) {
-            return (minutes < 10 ? '0' + minutes : minutes) + ":" + (seconds < 10 ? '0' + seconds : seconds);
-        } else {
-            return <span>"-:--"</span>
-        }
+        return (minutes < 10 ? '0' + minutes : minutes) + ":" + (seconds < 10 ? '0' + seconds : seconds);
     }
     
 
