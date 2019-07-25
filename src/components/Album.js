@@ -171,8 +171,6 @@ class Album extends Component {
                                         <td key={song.id}></td>
                                         <td key={song.name}>{song.title}</td>
                                         <td key={song.length}>{this.formatTime(song.duration)}</td>
-                                        
-                                        
                                     </tr>
                                 )
                             })
