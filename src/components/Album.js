@@ -134,6 +134,7 @@ class Album extends Component {
         const minutes = Math.floor(duration / 60);
         const seconds = Math.floor(duration - minutes * 60);
         return (minutes < 10 ? '0' + minutes : minutes) + ":" + (seconds < 10 ? '0' + seconds : seconds);
+
     }
     
 
@@ -153,7 +154,7 @@ class Album extends Component {
                     <colgroup>
                         <col id="song-number-column"/>
                         <col id="song-title-column"/>
-                        <col id="song-duration-column" />
+                        <col id="song-duration-column"/>
                     </colgroup>
                     <tbody>
                         {

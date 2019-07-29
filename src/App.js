@@ -11,18 +11,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <header>
-          <nav>
-            <Link to='/'>Landing</Link>
+          <nav id="landing-nav">
+            <Link to='/'>Home</Link>
             <Link to='/library'>Library</Link>
           </nav>
-          <h1>Bloc Jams</h1>
+          <div className="flip-card">
+            <div className="flip-card-inner">
+              <div className="flip-card-front">
+                <h1 id="landing-header">Bloc Jams</h1>
+              </div>
+            </div>  
+          </div>  
         </header>
-        <main>
-          <Route exact path='/' component={Landing} />
-          <Route path='/library' component={Library} />
-          <Route path='/album/:slug' component={Album} />
-        </main>
-      </div>
+            <main>
+              <Route exact path='/' component={Landing} />
+              <Route path='/library' component={Library} />
+              <Route path='/album/:slug' component={Album} />
+            </main>
+      </div>  
     );
   }
 }
