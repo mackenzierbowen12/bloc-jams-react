@@ -1,0 +1,76 @@
+.album {
+    background-color: #E7F0EE;
+}
+
+
+#song-list {
+    padding: 30px;
+    margin: auto;
+    height: 250px;
+    width: 250px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 18px;
+}
+
+#album-cover-art {
+    margin-top: 40px;
+    height: 400px;
+    width: 400px;
+    border: 10px solid #ffffff;
+    
+}
+
+.album-details {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #000000;
+    font-size: 20px;
+    text-shadow: 2px 2px #2CC7B3;
+}
+
+#buttons #previous, #next, #play-pause {
+    border: 2px solid black;
+    background-color: #2CC7B3;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+} 
+
+#buttons #previous:hover, #next:hover, #play-pause:hover {
+    border: 4px solid #000000;
+    background-color: #000000;
+    color: white;    
+}
+
+
+
+#time-control {
+    margin-top: 20px;
+}
+
+.seek-bar {
+    width: 20%;
+}
+
+.current-time, .total-time {
+    display: inline;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+#volume-control {
+    padding: 20px;
+}
+
+.ion-volume-low, .ion-volume-high {
+    display: inline;
+    padding-right: 10px;
+    padding-left: 10px;
+    
+}
+
+
+
