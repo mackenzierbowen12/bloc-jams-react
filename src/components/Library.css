@@ -1,0 +1,38 @@
+.library {
+    text-align: center;
+    background-color: #E7F0EE;
+}
+
+.albumCovers {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+    margin-top: 40px;
+    width: 300px;
+    height: 300px;
+    border: solid 2px #000000;
+}
+
+.albumCovers:hover {
+    opacity: 0.5;
+}
+
+.albumTitle, .albumArtist, .albumSongCount {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: black;
+    font-size: 15px;
+}
+
+.albumTitle:hover, .albumArtist:hover, .albumSongCount:hover {
+    color: white;
+    text-shadow: 2px 2px #000000;
+    font-size: 25px;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+
+
+
+
